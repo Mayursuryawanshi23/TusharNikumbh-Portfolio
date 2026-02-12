@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 const areas = [
@@ -14,79 +13,75 @@ const areas = [
 ];
 
 const TherapeuticAreas = () => {
-    const [isHovered, setIsHovered] = useState(false);
-
     return (
         <section className="py-24 bg-slate-50/30 border-y border-slate-100 overflow-hidden">
             <div className="container mx-auto px-6 md:px-12 text-center mb-16">
                 <motion.h2
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 12 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
+                    transition={{ duration: 0.3 }}
                     className="text-4xl font-serif font-medium text-slate-800"
                 >
                     Therapeutic Experience
                 </motion.h2>
                 <motion.p
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 12 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
+                    transition={{ duration: 0.3, delay: 0.05 }}
                     className="text-lg text-slate-500 font-light mt-4"
                 >
                     Specialized knowledge across diverse clinical indications.
                 </motion.p>
             </div>
 
-            {/* Infinite Carousel Container */}
-            <div
-                className="relative w-full overflow-hidden"
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-            >
-                {/* Gradient Masks */}
-                <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10 hidden md:block" />
-                <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-10 hidden md:block" />
+            {/* Horizontal Carousel Container */}
+            <div className="relative w-full overflow-hidden px-0">
+                {/* Left Gradient Blur */}
+                <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white via-white to-transparent z-10 hidden md:block pointer-events-none" />
+                
+                {/* Right Gradient Blur */}
+                <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white via-white to-transparent z-10 hidden md:block pointer-events-none" />
 
                 <motion.div
-                    className="flex space-x-8 px-4 w-max"
-                    animate={{ x: isHovered ? undefined : "-50%" }} // Move halfway (one set of items)
+                    className="flex space-x-6 px-6 md:px-24 w-max"
+                    animate={{ x: [0, -100, 0] }}
                     transition={{
                         x: {
-                            duration: 40,
+                            duration: 35,
                             ease: "linear",
                             repeat: Infinity,
                             repeatType: "loop"
                         }
                     }}
-                    style={{ x: 0 }} // Start position
                 >
-                    {/* Render Double the items to create seamless loop */}
+                    {/* Render items twice for seamless loop */}
                     {[...areas, ...areas].map((area, index) => (
                         <div
                             key={index}
-                            className="glass-card w-[280px] md:w-[320px] h-[180px] flex-shrink-0 bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg hover:border-slate-300 hover:-translate-y-1 transition-all duration-300 group cursor-default"
+                            className="glass-card w-[280px] md:w-[320px] h-[220px] flex-shrink-0 bg-white border border-slate-200 rounded-xl overflow-hidden shadow-md hover:shadow-xl hover:border-slate-300 transition-all duration-200 group cursor-default hover:scale-105"
                         >
                             {/* Image Container */}
                             <div className="relative w-full h-32 overflow-hidden bg-slate-100">
                                 <img
                                     src={area.imageSrc}
                                     alt={area.title}
-                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
+                                    className="w-full h-full object-cover"
                                     loading="lazy"
+                                    decoding="async"
                                 />
                             </div>
 
                             {/* Content Container */}
-                            <div className="p-4 h-20 flex flex-col justify-between">
-                                <h3 className="text-lg font-serif text-slate-800 group-hover:text-slate-900 transition-colors">
+                            <div className="p-4 h-24 flex flex-col justify-between">
+                                <h3 className="text-lg font-serif text-slate-800 group-hover:text-slate-900 transition-colors duration-200">
                                     {area.title}
                                 </h3>
 
                                 <div className="flex items-center space-x-3">
-                                    <div className="h-[1px] w-6 bg-slate-200 group-hover:bg-slate-400 transition-colors" />
-                                    <span className="text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-700 transition-colors">
+                                    <div className="h-[1px] w-6 bg-slate-200 group-hover:bg-slate-400 transition-colors duration-200" />
+                                    <span className="text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-700 transition-colors duration-200">
                                         {area.phase}
                                     </span>
                                 </div>
@@ -100,3 +95,4 @@ const TherapeuticAreas = () => {
 };
 
 export default TherapeuticAreas;
+

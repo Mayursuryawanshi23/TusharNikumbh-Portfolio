@@ -10,5 +10,20 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'framer': ['framer-motion'],
+        }
+      }
+    },
+  },
+  server: {
+    hmr: {
+      host: 'localhost',
+      protocol: 'ws',
+    }
+  }
 })
 

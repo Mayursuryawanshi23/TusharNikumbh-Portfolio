@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const experiences = [
@@ -51,7 +51,7 @@ const experiences = [
 const Experience = () => {
     return (
         <section id="experience" className="py-24 relative overflow-hidden">
-            {/* Background Image with White Blur */}
+            {/* Background Image - Optimized */}
             <div 
                 className="absolute inset-0 bg-cover bg-center"
                 style={{
@@ -59,14 +59,16 @@ const Experience = () => {
                     opacity: 0.7,
                 }}
             />
-            <div className="absolute inset-0 bg-black/40 backdrop-blur-sm pointer-events-none" />
+            {/* Removed backdrop-blur for performance */}
+            <div className="absolute inset-0 bg-black/40 pointer-events-none" />
 
             <div className="container mx-auto px-6 md:px-12 max-w-5xl relative z-10">
                 {/* Header */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
                     className="mb-20 text-center md:text-left"
                 >
                     <h2 className="text-3xl md:text-4xl font-serif text-white tracking-wide">Professional Experience</h2>
@@ -88,32 +90,32 @@ const ExperienceCard = ({ data, index }) => {
 
     return (
         <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
-            transition={{ delay: index * 0.1, duration: 0.5 }}
+            transition={{ delay: index * 0.05, duration: 0.35 }}
             className="relative pl-8 md:pl-16 group"
         >
             {/* Timeline Node */}
-            <div className={`absolute left-[-5px] md:left-[-6px] top-2 w-3 h-3 rounded-full border-2 transition-colors duration-300 ${index === 0 ? 'bg-white border-white' : 'bg-white border-white group-hover:border-white'}`} />
+            <div className={`absolute left-[-5px] md:left-[-6px] top-2 w-3 h-3 rounded-full border-2 transition-colors duration-200 ${index === 0 ? 'bg-white border-white' : 'bg-white border-white group-hover:border-white'}`} />
 
             {/* Content Card */}
             <div
                 onClick={() => setIsOpen(!isOpen)}
-                className="glass-card cursor-pointer p-6 rounded-xl border border-transparent hover:border-white hover:bg-slate-900 hover:shadow-xl transition-all duration-700 ease-in-out group/card"
+                className="glass-card cursor-pointer p-6 rounded-xl border border-transparent hover:border-white hover:bg-slate-900 hover:shadow-2xl transition-all duration-300 group/card hover:scale-105 hover:-translate-y-1"
             >
                 <div className="flex flex-col md:flex-row md:items-baseline md:justify-between mb-2">
-                    <h3 className="text-xl md:text-2xl font-medium text-white group-hover/card:text-white transition-colors duration-700 ease-in-out">
+                    <h3 className="text-xl md:text-2xl font-medium text-white group-hover/card:text-white transition-colors duration-200">
                         {data.title}
                     </h3>
-                    <span className="text-xs font-bold uppercase tracking-wider text-white group-hover/card:text-white mt-1 md:mt-0 transition-colors duration-700 ease-in-out">
+                    <span className="text-xs font-bold uppercase tracking-wider text-white group-hover/card:text-white mt-1 md:mt-0 transition-colors duration-200">
                         {data.period}
                     </span>
                 </div>
 
-                <h4 className="text-base text-white font-medium mb-4 group-hover/card:text-white transition-colors duration-700 ease-in-out">{data.company}</h4>
+                <h4 className="text-base text-white font-medium mb-4 group-hover/card:text-white transition-colors duration-200">{data.company}</h4>
 
-                <p className="text-white leading-relaxed font-light text-lg group-hover/card:text-white transition-colors duration-700 ease-in-out">
+                <p className="text-white leading-relaxed font-light text-lg group-hover/card:text-white transition-colors duration-200">
                     {data.desc}
                 </p>
 
@@ -124,13 +126,13 @@ const ExperienceCard = ({ data, index }) => {
                             initial={{ height: 0, opacity: 0 }}
                             animate={{ height: "auto", opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.7, ease: "easeInOut" }}
+                            transition={{ duration: 0.3, ease: "easeInOut" }}
                             className="overflow-hidden"
                         >
-                            <ul className="mt-6 space-y-3 border-t border-white group-hover/card:border-white pt-6 transition-colors duration-700 ease-in-out">
+                            <ul className="mt-6 space-y-3 border-t border-white group-hover/card:border-white pt-6 transition-colors duration-200">
                                 {data.details.map((detail, idx) => (
-                                    <li key={idx} className="flex items-start text-white group-hover/card:text-white text-sm md:text-base font-light transition-colors duration-700 ease-in-out">
-                                        <span className="w-1.5 h-1.5 bg-white group-hover/card:bg-white rounded-full mt-2 mr-3 flex-shrink-0 transition-colors duration-700 ease-in-out" />
+                                    <li key={idx} className="flex items-start text-white group-hover/card:text-white text-sm md:text-base font-light transition-colors duration-200">
+                                        <span className="w-1.5 h-1.5 bg-white group-hover/card:bg-white rounded-full mt-2 mr-3 flex-shrink-0 transition-colors duration-200" />
                                         {detail}
                                     </li>
                                 ))}

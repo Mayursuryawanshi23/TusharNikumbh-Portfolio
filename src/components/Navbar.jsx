@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Menu, X } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
@@ -31,8 +31,8 @@ const Navbar = () => {
             role="navigation"
             aria-label="Main navigation"
             onKeyDown={(e) => { if (e.key === 'Escape') setIsSheetOpen(false); }}
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-                ? "bg-white/95 backdrop-blur-md shadow-[0_10px_30px_-10px_rgba(2,6,23,0.15)] border-b border-slate-200 py-4" 
+            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${isScrolled
+                ? "bg-white/95 shadow-[0_10px_30px_-10px_rgba(2,6,23,0.15)] border-b border-slate-200 py-4" 
                 : "bg-transparent py-6"
                 }`}
         >
@@ -54,7 +54,7 @@ const Navbar = () => {
                         </a>
                     ))}
                     <a href="/CV/Profile%20(1).pdf" target="_blank" rel="noopener noreferrer" className="ml-6">
-                        <Button className="bg-slate-900 text-white hover:bg-slate-800 rounded-lg px-6 py-3 text-sm font-medium transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 duration-200 active:scale-95">
+                        <Button className="bg-slate-900 text-white hover:bg-slate-800 rounded-lg px-6 py-3 text-sm font-medium shadow-md hover:shadow-lg transition-all duration-200 hover:scale-105">
                              Download CV
                         </Button>
                     </a>
@@ -89,7 +89,7 @@ const Navbar = () => {
                                 ))}
                                 <div className="pt-6 border-t border-slate-200 mt-2 space-y-3">
                                     <a href="/CV/Profile%20(1).pdf" target="_blank" rel="noopener noreferrer" onClick={() => setIsSheetOpen(false)}>
-                                        <Button className="w-full bg-slate-900 text-white hover:bg-slate-800 rounded-lg transition-all py-3">
+                                        <Button className="w-full bg-slate-900 text-white hover:bg-slate-800 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 py-3 hover:scale-105">
                                             Download CV
                                         </Button>
                                     </a>

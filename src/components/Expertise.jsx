@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { useState } from "react";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { motion } from "framer-motion";
 
 const Expertise = () => {
@@ -11,9 +11,10 @@ const Expertise = () => {
                 {/* Header Area */}
                 <div className="text-center mb-6 md:mb-8 lg:mb-10 space-y-2">
                     <motion.h2
-                        initial={{ opacity: 0, y: 10 }}
+                        initial={{ opacity: 0, y: 8 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
+                        transition={{ duration: 0.4 }}
                         className="text-3xl md:text-4xl font-serif font-medium text-slate-900"
                     >
                         Core Expertise
@@ -21,7 +22,7 @@ const Expertise = () => {
                     <motion.p
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
-                        transition={{ delay: 0.2, duration: 0.6 }}
+                        transition={{ delay: 0.1, duration: 0.4 }}
                         viewport={{ once: true }}
                         className="text-slate-500 text-sm md:text-base tracking-wide font-light lowercase"
                     >
@@ -51,7 +52,7 @@ const Expertise = () => {
                                     key={tab}
                                     type="button"
                                     onClick={() => setSelected(tab)}
-                                    className={`w-full h-14 flex items-center justify-center px-3 text-sm font-medium transition-colors duration-150 ${borders} ${corners} ${active ? 'bg-[#062242] text-white' : 'bg-white text-slate-700 hover:bg-slate-50'}`}
+                                    className={`w-full h-14 flex items-center justify-center px-3 text-sm font-medium transition-all duration-200 ${borders} ${corners} ${active ? 'bg-[#062242] text-white shadow-md' : 'bg-white text-slate-700 hover:bg-slate-100 hover:shadow-sm'}`}
                                 >
                                     <span className="truncate text-center">{label}</span>
                                 </button>
@@ -71,7 +72,7 @@ const Expertise = () => {
                                     <TabsTrigger
                                         key={tab}
                                         value={tab}
-                                        className="rounded-full px-6 py-2.5 text-sm md:text-base font-medium text-slate-500 data-[state=active]:bg-slate-900 data-[state=active]:text-white data-[state=active]:shadow-md transition-colors duration-700 ease-in-out hover:text-slate-900 hover:bg-slate-200"
+                                        className="rounded-full px-6 py-2.5 text-sm md:text-base font-medium text-slate-500 data-[state=active]:bg-slate-900 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:scale-105 transition-all duration-200 hover:text-slate-900 hover:bg-slate-200 hover:scale-105"
                                     >
                                         {label}
                                     </TabsTrigger>
@@ -153,10 +154,10 @@ const Expertise = () => {
 const TabContentLayout = ({ title, summary, bullets, imageSrc }) => {
     return (
         <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-start opacity-0 animate-in fade-in slide-in-from-bottom-2"
+            className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-start"
         >
             {/* Left Column - Textual Expertise */}
             <div className="space-y-6">
@@ -168,8 +169,8 @@ const TabContentLayout = ({ title, summary, bullets, imageSrc }) => {
                 <ul className="space-y-3 pl-1">
                     {bullets.map((item, idx) => (
                         <li key={idx} className="flex items-start group">
-                            <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2.5 mr-4 group-hover:bg-slate-600 transition-colors duration-300" />
-                            <span className="text-slate-700 font-light group-hover:text-slate-900 group-hover:translate-x-1 transition-all duration-300 cursor-default">
+                            <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2.5 mr-4 group-hover:bg-slate-600 transition-colors duration-200" />
+                            <span className="text-slate-700 font-light group-hover:text-slate-900 transition-colors duration-200 cursor-default">
                                 {item}
                             </span>
                         </li>
@@ -177,17 +178,17 @@ const TabContentLayout = ({ title, summary, bullets, imageSrc }) => {
                 </ul>
             </div>
 
-            {/* Right Column - Professional Image */}
+            {/* Right Column - Professional Image - Optimized */}
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.1, duration: 0.5 }}
-                className="glass-card hidden lg:flex items-center justify-center lg:h-[400px] lg:min-h-[220px] border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg hover:border-slate-300 transition-all duration-300 group"
+                transition={{ delay: 0.1, duration: 0.3 }}
+                className="glass-card hidden lg:flex items-center justify-center lg:h-[400px] lg:min-h-[220px] border border-slate-200 rounded-xl overflow-hidden shadow-md hover:shadow-xl hover:border-slate-300 transition-all duration-200 group hover:scale-105"
             >
                 <img
                     src={imageSrc}
                     alt={title}
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+                    className="w-full h-full object-cover object-center"
                     loading="lazy"
                 />
             </motion.div>

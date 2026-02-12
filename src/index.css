@@ -7,55 +7,24 @@
     scroll-behavior: smooth;
   }
 
-  /* Glass Morphism Background */
+  /* Simplified Background - No Animations */
   body {
     background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #ffffff 100%);
     position: relative;
     overflow-x: hidden;
-    /* Enable smooth paging behavior: let the page snap to each section when scrolling */
-    scroll-snap-type: y mandatory;
-    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: auto;
   }
 
-  body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 20% 50%, rgba(203, 213, 225, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(148, 163, 184, 0.05) 0%, transparent 50%);
-    pointer-events: none;
-    z-index: -1;
-  }
+  /* Removed body::before and body::after pseudo-elements for performance */
 
-  /* Crystal Mirror Effect Background */
-  body::after {
-    content: "";
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    background: linear-gradient(to bottom,
-      transparent 0%,
-      rgba(255, 255, 255, 0.02) 20%,
-      rgba(200, 220, 255, 0.03) 50%,
-      rgba(148, 163, 184, 0.08) 100%);
-    pointer-events: none;
-    z-index: -1;
-    mix-blend-mode: multiply;
-  }
-
-  /* Mirror Reflection Container */
+  /* Removed Mirror Reflection Variables */
   html {
-    --mirror-opacity: 0.4;
-    --mirror-blur: 12px;
-    --mirror-fade: 60%;
+    --mirror-opacity: 0;
+    --mirror-blur: 0;
+    --mirror-fade: 0%;
   }
 
-  /* Scroll Reveal Animation */
+  /* Removed Heavy Animations - Causing Performance Issues */
   @keyframes slideInFromBottom {
     from {
       opacity: 0;
@@ -87,86 +56,9 @@
     }
   }
 
-  @keyframes blueGlow {
-    0%, 100% {
-      filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.4)) drop-shadow(0 0 20px rgba(59, 130, 246, 0.2));
-    }
-    50% {
-      filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 40px rgba(59, 130, 246, 0.3));
-    }
-  }
+  /* Removed blueGlow, float1, float2, float3 animations - Too heavy */
 
-  @keyframes float1 {
-    0%, 100% {
-      transform: translate(0, 0);
-      opacity: 0.3;
-    }
-    25% {
-      transform: translate(15px, -20px);
-      opacity: 0.5;
-    }
-    50% {
-      transform: translate(-10px, -35px);
-      opacity: 0.3;
-    }
-    75% {
-      transform: translate(-20px, -15px);
-      opacity: 0.4;
-    }
-  }
-
-  @keyframes float2 {
-    0%, 100% {
-      transform: translate(0, 0);
-      opacity: 0.25;
-    }
-    33% {
-      transform: translate(-25px, 20px);
-      opacity: 0.4;
-    }
-    66% {
-      transform: translate(20px, -10px);
-      opacity: 0.3;
-    }
-  }
-
-  @keyframes float3 {
-    0%, 100% {
-      transform: translate(0, 0);
-      opacity: 0.35;
-    }
-    40% {
-      transform: translate(18px, 15px);
-      opacity: 0.5;
-    }
-    80% {
-      transform: translate(-15px, -20px);
-      opacity: 0.3;
-    }
-  }
-
-  /* Blue Glow Image Animation */
-  .blue-glow-image {
-    animation: blueGlow 3s ease-in-out infinite;
-  }
-
-  /* Floating circles */
-  .float-circle {
-    filter: blur(40px);
-    mix-blend-mode: screen;
-  }
-
-  .float-circle-1 {
-    animation: float1 8s ease-in-out infinite;
-  }
-
-  .float-circle-2 {
-    animation: float2 10s ease-in-out infinite;
-  }
-
-  .float-circle-3 {
-    animation: float3 9s ease-in-out infinite;
-  }
+  /* Removed heavy floating circle animations */
 
   /* Respect prefers-reduced-motion */
   @media (prefers-reduced-motion: reduce) {
@@ -179,15 +71,16 @@
 
   /* Image Optimization */
   img {
-    will-change: contents;
+    content-visibility: auto;
   }
 
-  /* Smooth transitions */
+  /* Smooth transitions - fast for better performance */
   * {
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
   }
 
-  /* GPU Acceleration */
+  /* GPU Acceleration for critical sections */
   section {
     transform: translateZ(0);
   }
@@ -273,120 +166,28 @@
     @apply border-border;
   }
 
-  /* Crystal Mirror Floating Effect */
-  @keyframes mirrorGlow {
-    0%, 100% {
-      filter: drop-shadow(0 20px 60px rgba(203, 213, 225, 0.15));
-    }
-    50% {
-      filter: drop-shadow(0 25px 80px rgba(203, 213, 225, 0.25));
-    }
-  }
+  /* Removed heavy mirror animations for performance */
 
-  @keyframes mirrorShine {
-    0%, 100% {
-      opacity: 0.3;
-    }
-    50% {
-      opacity: 0.6;
-    }
-  }
-
-  /* Mirror Reflection Layer */
+  /* Main section positioning */
   main {
     position: relative;
-    animation: mirrorGlow 6s ease-in-out infinite;
   }
 
-  /* Add subtle floating lift */
-  main::before {
-    content: "";
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 50vh;
-    background: linear-gradient(to bottom,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(203, 213, 225, 0.05) 30%,
-      rgba(148, 163, 184, 0.15) 100%);
-    pointer-events: none;
-    z-index: -2;
-    clip-path: polygon(
-      0 0,
-      0 100%,
-      5% 95%,
-      10% 98%,
-      15% 94%,
-      20% 97%,
-      25% 93%,
-      30% 96%,
-      35% 92%,
-      40% 95%,
-      45% 91%,
-      50% 94%,
-      55% 90%,
-      60% 93%,
-      65% 89%,
-      70% 92%,
-      75% 88%,
-      80% 91%,
-      85% 87%,
-      90% 90%,
-      95% 86%,
-      100% 89%,
-      100% 0
-    );
-  }
+  /* Removed heavy main::before and main::after pseudo-elements */
 
-  /* Mirror shine effect overlay */
-  main::after {
-    content: "";
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    background: linear-gradient(180deg,
-      transparent 0%,
-      rgba(255, 255, 255, 0.1) 40%,
-      rgba(255, 255, 255, 0.2) 50%,
-      rgba(255, 255, 255, 0.05) 100%);
-    pointer-events: none;
-    z-index: -2;
-    animation: mirrorShine 8s ease-in-out infinite;
-    mix-blend-mode: screen;
-  }
-
-  /* Enhanced section floating */
+  /* Section styling */
   section {
     position: relative;
     z-index: 1;
-    /* Participate in scroll snapping: align section starts to the viewport */
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
   }
 
-  /* Add crystal reflection to cards */
+  /* Optimized glass-card - removed extra pseudo-element animations */
   .glass-card {
     position: relative;
   }
 
-  .glass-card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg,
-      rgba(255, 255, 255, 0.5) 0%,
-      rgba(255, 255, 255, 0) 50%);
-    border-radius: inherit;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 300ms ease;
-  }
-
-  .glass-card:hover::before {
-    opacity: 1;
+  .glass-card:hover {
+    /* Simple hover without complex animations */
   }
 }
 

@@ -1,4 +1,3 @@
-import React from "react";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -15,6 +14,7 @@ const Hero = () => {
                             alt="Profile - Tushar Nikumbh"
                             className="w-full h-full object-contain"
                             loading="lazy"
+                            decoding="async"
                         />
                     </div>
                 </div>
@@ -40,13 +40,13 @@ const Hero = () => {
 
                     <div className="flex flex-row gap-3 pt-6 items-center justify-center min-[600px]:justify-start">
                         <a href="#expertise">
-                            <Button className="px-6 py-3 sm:px-8 sm:py-6 min-h-[44px] bg-slate-900 text-white hover:bg-slate-800 rounded-none text-base">
+                            <Button className="px-6 py-3 sm:px-8 sm:py-6 min-h-[44px] bg-slate-900 text-white hover:bg-slate-800 rounded-none text-base shadow-md hover:shadow-lg hover:scale-105 transition-all duration-200">
                                 View Expertise
                             </Button>
                         </a>
                         <a href="#contact">
-                            <Button variant="outline" className="px-6 py-3 sm:px-8 sm:py-6 min-h-[44px] border-slate-200 text-slate-700 hover:bg-slate-50 rounded-none text-base bg-transparent group">
-                                Contact <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                            <Button variant="outline" className="px-6 py-3 sm:px-8 sm:py-6 min-h-[44px] border-slate-200 text-slate-700 hover:bg-slate-100 hover:border-slate-400 rounded-none text-base bg-transparent group shadow-sm hover:shadow-md hover:scale-105 transition-all duration-200">
+                                Contact <ArrowRight className="ml-2 h-4 w-4 transition-all duration-200 group-hover:translate-x-1.5 group-hover:scale-110" />
                             </Button>
                         </a>
 
@@ -74,7 +74,8 @@ const Hero = () => {
                             src="/profilepic/download.png"
                             alt="Professional Portrait - Tushar Nikumbh"
                             className="w-full h-auto object-contain"
-                            loading="eager"
+                            loading="lazy"
+                            decoding="async"
                             style={{ maxHeight: '608px' }}
                         />
                     </div>

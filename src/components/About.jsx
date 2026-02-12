@@ -1,10 +1,9 @@
-import React from "react";
 import { motion } from "framer-motion";
 
 const About = () => {
     return (
         <section id="about" className="py-[40px] md:py-[56px] lg:py-[96px] bg-transparent relative overflow-hidden">
-            {/* Background Image - Fully Covering */}
+            {/* Background Image - Optimized */}
             <div 
                 className="absolute inset-0 bg-cover bg-center"
                 style={{
@@ -12,7 +11,8 @@ const About = () => {
                     opacity: 0.95,
                 }}
             />
-            <div className="absolute inset-0 bg-black/35 backdrop-blur-sm pointer-events-none" />
+            {/* Removed backdrop-blur for performance - using simple overlay instead */}
+            <div className="absolute inset-0 bg-black/35 pointer-events-none" />
 
             <div className="w-full px-[20px] md:container md:mx-auto md:px-12 max-w-6xl relative z-10">
                 <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-start md:items-start">
@@ -25,7 +25,7 @@ const About = () => {
                         </h3>
                     </div>
 
-                    {/* Right Column - Animated Content */}
+                    {/* Right Column - Simplified Animations */}
                     <div className="w-full md:w-3/4 space-y-10">
                         <motion.div
                             initial="hidden"
@@ -35,7 +35,7 @@ const About = () => {
                                 hidden: {},
                                 visible: {
                                     transition: {
-                                        staggerChildren: 0.15
+                                        staggerChildren: 0.05
                                     }
                                 }
                             }}
@@ -43,8 +43,8 @@ const About = () => {
                             {/* Paragraph 1 - Intro */}
                             <motion.p
                                 variants={{
-                                    hidden: { opacity: 0, y: 10 },
-                                    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+                                    hidden: { opacity: 0, y: 5 },
+                                    visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
                                 }}
                                 className="text-base md:text-lg lg:text-xl text-white font-light leading-relaxed md:leading-relaxed text-left max-w-full md:max-w-none"
                             >
@@ -62,8 +62,8 @@ const About = () => {
                             {/* Paragraph 2 - Therapeutic Depth */}
                             <motion.p
                                 variants={{
-                                    hidden: { opacity: 0, y: 10 },
-                                    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+                                    hidden: { opacity: 0, y: 5 },
+                                    visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
                                 }}
                                 className="text-base md:text-lg lg:text-xl text-white font-light leading-relaxed md:leading-relaxed text-left max-w-full md:max-w-none"
                             >
@@ -81,8 +81,8 @@ const About = () => {
                             {/* Paragraph 3 - Work Style */}
                             <motion.p
                                 variants={{
-                                    hidden: { opacity: 0, y: 10 },
-                                    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+                                    hidden: { opacity: 0, y: 5 },
+                                    visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
                                 }}
                                 className="text-base md:text-lg lg:text-xl text-white font-light leading-relaxed md:leading-relaxed text-left max-w-full md:max-w-none"
                             >
