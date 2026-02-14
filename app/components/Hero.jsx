@@ -1,6 +1,7 @@
-import React from "react";
-import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+'use client'
+
+import { ArrowRight } from 'lucide-react'
+import { Button } from '@/app/components/ui/button'
 
 const Hero = () => {
     return (
@@ -50,7 +51,6 @@ const Hero = () => {
                                 Contact <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
                             </Button>
                         </a>
-
                     </div>
 
                     <div className="pt-12 flex gap-12 border-t border-slate-100 max-w-md mx-auto text-center min-[600px]:mx-0 min-[600px]:text-left">
@@ -65,7 +65,6 @@ const Hero = () => {
                     </div>
                 </header>
 
-
                 {/* Large image (>=600px) - right column on larger screens */}
                 <div
                     className="hidden min-[600px]:flex min-[600px]:order-last min-[600px]:w-[38%] lg:w-[40%] items-center justify-center"
@@ -73,7 +72,7 @@ const Hero = () => {
                     <figure className="w-full rounded-2xl overflow-hidden">
                         <img
                             src="/profilepic/download.png"
-                            alt="Professional portrait - Tushar Nikumbh, Principal Biostatistician"
+                            alt="Professional portrait - Tushar  Nikumbh, Principal Biostatistician"
                             className="w-full h-auto object-contain"
                             loading="lazy"
                             decoding="async"
@@ -84,7 +83,7 @@ const Hero = () => {
                 </div>
             </div>
         </section>
-    );
-};
+    )
+}
 
-export default Hero;
+export default Hero

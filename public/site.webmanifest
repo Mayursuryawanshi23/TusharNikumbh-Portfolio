@@ -1,0 +1,42 @@
+{
+  "name": "Tushar Nikumbh - Principal Biostatistician",
+  "short_name": "Tushar Nikumbh",
+  "description": "Principal Biostatistician with 10+ years expertise in clinical trial statistics, CDISC standards, and SAP programming",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "categories": ["business", "professional services"],
+  "screenshots": [
+    {
+      "src": "/profilepic/download.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "keywords": [
+    "Biostatistician",
+    "Clinical Trials",
+    "CDISC",
+    "SAP",
+    "Statistical Analysis",
+    "Oncology",
+    "Immunology"
+  ],
+  "contacts": [
+    {
+      "name": "Contact Support",
+      "email": "contact@tusharnikumbh.com"
+    }
+  ]
+}

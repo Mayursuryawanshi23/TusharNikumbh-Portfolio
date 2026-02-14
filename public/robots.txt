@@ -1,8 +1,20 @@
 User-agent: *
 Allow: /
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /handovers/
+
+# Specific rules for search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
 
 # Point search engines to the sitemap
 Sitemap: https://tusharnikumbh.netlify.app/sitemap.xml
 
-# Crawl-delay can be set if necessary (seconds)
-# Crawl-delay: 10
+# Optional: Crawl-delay for all bots (seconds)
+# Crawl-delay: 0

@@ -1,3 +1,4 @@
+'use client'
 import React from "react";
 import { motion } from "framer-motion";
 
@@ -99,4 +100,3 @@ const TherapeuticAreas = () => {
 };
 
 export default TherapeuticAreas;
-

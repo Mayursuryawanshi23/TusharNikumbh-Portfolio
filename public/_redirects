@@ -1,0 +1,15 @@
+# Netlify Redirects for SEO and Performance
+
+# Force HTTPS
+http://tusharnikumbh.netlify.app/* https://tusharnikumbh.netlify.app/:splat 301
+
+# Trailing slashes - redirect non-trailing to trailing
+/*  /:splat/  301
+
+# Keep these files as-is
+/robots.txt /robots.txt 200
+/sitemap.xml /sitemap.xml 200
+/site.webmanifest /site.webmanifest 200
+
+# SPA fallback for all other routes
+/* /index.html 200

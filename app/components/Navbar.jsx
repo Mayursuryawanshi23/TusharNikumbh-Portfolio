@@ -1,40 +1,42 @@
-import { useState, useEffect, useCallback } from "react";
-import { Menu, X } from "lucide-react";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
+'use client'
+
+import { useState, useEffect, useCallback } from 'react'
+import { Menu, X } from 'lucide-react'
+import { Sheet, SheetContent, SheetTrigger } from '@/app/components/ui/sheet'
+import { Button } from '@/app/components/ui/button'
 
 const Navbar = () => {
-    const [isScrolled, setIsScrolled] = useState(false);
-    const [isSheetOpen, setIsSheetOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false)
+    const [isSheetOpen, setIsSheetOpen] = useState(false)
 
     const handleScroll = useCallback(() => {
-        const scrolled = window.scrollY > 50;
+        const scrolled = window.scrollY > 50
         if (scrolled !== isScrolled) {
-            setIsScrolled(scrolled);
+            setIsScrolled(scrolled)
         }
-    }, [isScrolled]);
+    }, [isScrolled])
 
     useEffect(() => {
-        window.addEventListener("scroll", handleScroll, { passive: true });
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, [handleScroll]);
+        window.addEventListener('scroll', handleScroll, { passive: true })
+        return () => window.removeEventListener('scroll', handleScroll)
+    }, [handleScroll])
 
     const navLinks = [
-        { name: "About", href: "#about" },
-        { name: "Expertise", href: "#expertise" },
-        { name: "Experience", href: "#experience" },
-        { name: "Contact", href: "#contact" },
-    ];
+        { name: 'About', href: '#about' },
+        { name: 'Expertise', href: '#expertise' },
+        { name: 'Experience', href: '#experience' },
+        { name: 'Contact', href: '#contact' },
+    ]
 
     return (
         <nav
             role="navigation"
             aria-label="Main navigation"
-            onKeyDown={(e) => { if (e.key === 'Escape') setIsSheetOpen(false); }}
+            onKeyDown={(e) => { if (e.key === 'Escape') setIsSheetOpen(false) }}
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${isScrolled
-                ? "bg-white/95 shadow-[0_10px_30px_-10px_rgba(2,6,23,0.15)] border-b border-slate-200 py-4" 
-                : "bg-transparent py-6"
-                }`}
+                ? 'bg-white/95 shadow-[0_10px_30px_-10px_rgba(2,6,23,0.15)] border-b border-slate-200 py-4'
+                : 'bg-transparent py-6'
+            }`}
         >
             <div className="container mx-auto px-4 md:px-12 flex justify-between items-center">
                 {/* Logo / Site Title */}
@@ -56,8 +58,8 @@ const Navbar = () => {
                         </a>
                     ))}
                     <a href="/CV/Profile%20(1).pdf" target="_blank" rel="noopener noreferrer" aria-label="Download CV (PDF)">
-                        <Button className="bg-slate-900 text-white hover:bg-slate-800 rounded-lg px-6 py-3 text-sm font-medium shadow-md hover:shadow-lg transition-all duration-200 hover:scale-105" aria-label="Download curriculum vitae">
-                             Download CV
+                        <Button className="bg-slate-900 text-white hover:bg-slate-800 rounded-lg px-6 py-3 text-sm font-medium shadow-md hover:shadow-lg transition-all duration-200 hover:scale-105">
+                            Download CV
                         </Button>
                     </a>
                 </div>
@@ -69,7 +71,7 @@ const Navbar = () => {
                             <Button
                                 variant="ghost"
                                 size="icon"
-                                aria-label={isSheetOpen ? "Close navigation menu" : "Open navigation menu"}
+                                aria-label={isSheetOpen ? 'Close navigation menu' : 'Open navigation menu'}
                                 aria-expanded={isSheetOpen}
                                 aria-controls="mobile-menu"
                                 className="text-slate-800 hover:bg-slate-100 pr-[2px]"
@@ -97,7 +99,6 @@ const Navbar = () => {
                                             Download CV
                                         </Button>
                                     </a>
-                                    
                                 </div>
                             </nav>
                         </SheetContent>
@@ -105,7 +106,7 @@ const Navbar = () => {
                 </div>
             </div>
         </nav>
-    );
-};
+    )
+}
 
-export default Navbar;
+export default Navbar

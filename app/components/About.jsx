@@ -1,10 +1,12 @@
-import { motion } from "framer-motion";
+'use client'
+
+import { motion } from 'framer-motion'
 
 const About = () => {
     return (
         <section id="about" className="py-[40px] md:py-[56px] lg:py-[96px] bg-transparent relative overflow-hidden" aria-label="Professional Summary">
             {/* Background Image - Optimized */}
-            <div 
+            <div
                 className="absolute inset-0 bg-cover bg-center"
                 style={{
                     backgroundImage: 'url(/backgrounds/summary.png)',
@@ -95,14 +97,11 @@ const About = () => {
                                 ensuring seamless submissions to global health authorities.
                             </motion.p>
                         </motion.div>
-
-                        {/* Skills summary without cards/blocks as per request, just simple text or minimalist list could go here if needed, but prompt implies just the content paragraphs. 
-                            The user prompt asked for para 1, 2, 3. I have provided exactly that. */}
                     </article>
                 </div>
             </div>
-        </section >
-    );
-};
+        </section>
+    )
+}
 
-export default About;
+export default About

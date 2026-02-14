@@ -1,5 +1,3 @@
-
-
 const GravitonFooter = () => {
     return (
         <footer className="bg-black text-white py-3" role="contentinfo">
