@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import React, { useState } from "react";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { motion } from "framer-motion";
 
 const Expertise = () => {
@@ -52,7 +52,7 @@ const Expertise = () => {
                                     key={tab}
                                     type="button"
                                     onClick={() => setSelected(tab)}
-                                    className={`w-full h-14 flex items-center justify-center px-3 text-sm font-medium transition-all duration-200 ${borders} ${corners} ${active ? 'bg-[#062242] text-white shadow-md' : 'bg-white text-slate-700 hover:bg-slate-100 hover:shadow-sm'}`}
+                                    className={`w-full h-14 flex items-center justify-center px-3 text-sm font-medium transition-colors duration-150 ${borders} ${corners} ${active ? 'bg-[#062242] text-white' : 'bg-white text-slate-700 hover:bg-slate-50'}`}
                                 >
                                     <span className="truncate text-center">{label}</span>
                                 </button>
@@ -72,7 +72,7 @@ const Expertise = () => {
                                     <TabsTrigger
                                         key={tab}
                                         value={tab}
-                                        className="rounded-full px-6 py-2.5 text-sm md:text-base font-medium text-slate-500 data-[state=active]:bg-slate-900 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:scale-105 transition-all duration-200 hover:text-slate-900 hover:bg-slate-200 hover:scale-105"
+                                        className="rounded-full px-6 py-2.5 text-sm md:text-base font-medium text-slate-500 data-[state=active]:bg-slate-900 data-[state=active]:text-white data-[state=active]:shadow-md transition-colors duration-200 hover:text-slate-900 hover:bg-slate-200"
                                     >
                                         {label}
                                     </TabsTrigger>
@@ -183,7 +183,7 @@ const TabContentLayout = ({ title, summary, bullets, imageSrc }) => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.1, duration: 0.3 }}
-                className="glass-card hidden lg:flex items-center justify-center lg:h-[400px] lg:min-h-[220px] border border-slate-200 rounded-xl overflow-hidden shadow-md hover:shadow-xl hover:border-slate-300 transition-all duration-200 group hover:scale-105"
+                className="glass-card hidden lg:flex items-center justify-center lg:h-[400px] lg:min-h-[220px] border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 group"
             >
                 <img
                     src={imageSrc}

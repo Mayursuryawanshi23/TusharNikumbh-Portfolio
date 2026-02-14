@@ -13,7 +13,7 @@ const Footer = () => {
                     <a href="#" className="hover:text-white transition-colors">
                         <Linkedin className="w-5 h-5" />
                     </a>
-                    <a href="mailto:tusharnikumbh@example.com" className="hover:text-white transition-colors">
+                    <a href="mailto:tusharnikumbh1991@gmail.com" className="hover:text-white transition-colors">
                         <Mail className="w-5 h-5" />
                     </a>
                 </div>

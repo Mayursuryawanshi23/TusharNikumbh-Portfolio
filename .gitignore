@@ -22,3 +22,14 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Handover docs and local receipts
+handovers/
+*.pdf
+*.docx
+docs/
+
+# Environment
+.env
+.env.local
+.env.*.local

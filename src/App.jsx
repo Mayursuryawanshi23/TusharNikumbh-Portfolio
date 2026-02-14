@@ -9,14 +9,11 @@ import ToolsTechnologies from "@/components/ToolsTechnologies";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import GravitonFooter from "@/components/GravitonFooter";
-const BackgroundAnimation = lazy(() => import("@/components/BackgroundAnimation.jsx"));
 
 function App() {
   return (
     <div className="min-h-screen font-sans text-slate-900 relative">
-      <Suspense fallback={null}>
-        <BackgroundAnimation />
-      </Suspense>
+      {/* Background animation removed for production stability */}
 
       <Navbar />
       <main>

@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Point search engines to the sitemap
+Sitemap: https://tusharnikumbh.netlify.app/sitemap.xml
+
+# Crawl-delay can be set if necessary (seconds)
+# Crawl-delay: 10

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -17,11 +17,51 @@ const Contact = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e) => {
+    const [status, setStatus] = useState('idle'); // idle | sending | success | error
+    const [errors, setErrors] = useState({});
+
+    const validate = () => {
+        const e = {};
+        if (!formData.name || !formData.name.trim()) e.name = 'Name is required.';
+        if (!formData.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) e.email = 'A valid email is required.';
+        if (!formData.subject || formData.subject.trim().length < 3) e.subject = 'Subject must be at least 3 characters.';
+        if (!formData.message || formData.message.trim().length < 10) e.message = 'Message must be at least 10 characters.';
+        setErrors(e);
+        return Object.keys(e).length === 0;
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const mailSubject = formData.subject || `Portfolio Inquiry from ${formData.name}`;
-        const body = `Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0A%0D%0AMessage:%0D%0A${formData.message}`;
-        window.location.href = `mailto:tusharnikumbh@example.com?subject=${mailSubject}&body=${body}`;
+        if (!validate()) return;
+
+        setStatus('sending');
+        try {
+            const endpoint = 'https://formspree.io/f/xgolkvrq';
+            const body = new FormData();
+            body.append('name', formData.name);
+            body.append('email', formData.email);
+            body.append('subject', formData.subject);
+            body.append('message', formData.message);
+
+            const res = await fetch(endpoint, {
+                method: 'POST',
+                body,
+                headers: {
+                    Accept: 'application/json'
+                }
+            });
+
+            if (res.ok) {
+                setStatus('success');
+                setFormData({ name: '', email: '', subject: '', message: '' });
+                setErrors({});
+            } else {
+                setStatus('error');
+            }
+        } catch (err) {
+            console.error('Form submit error', err);
+            setStatus('error');
+        }
     };
 
     return (
@@ -29,7 +69,7 @@ const Contact = () => {
             <div className="container mx-auto px-4 md:px-8 max-w-6xl">
 
                 {/* Main Card Container */}
-                <div className="glass-card bg-white/80 rounded-2xl shadow-lg overflow-hidden border border-slate-200/80 grid md:grid-cols-2 min-h-[500px] hover:shadow-2xl hover:border-slate-400 transition-all duration-300 hover:-translate-y-1">
+                <div className="glass-card bg-white/80 rounded-2xl shadow-lg overflow-hidden border border-slate-200/80 grid md:grid-cols-2 min-h-[500px] hover:shadow-xl hover:border-slate-300/80 transition-shadow duration-200">
 
                     {/* LEFT COLUMN: Contact Image */}
                     <div className="relative bg-gradient-to-br from-slate-50/50 to-slate-100/50 border-r border-slate-200/50 flex items-center justify-center p-8 overflow-hidden h-full order-last md:order-first group">
@@ -46,7 +86,18 @@ const Contact = () => {
                     <div className="bg-gradient-to-b from-slate-50 to-slate-100/50 p-8 md:p-12 flex flex-col justify-center order-first md:order-last">
                         <h2 className="text-2xl md:text-3xl font-serif font-medium text-slate-900 mb-6">Let's connect.</h2>
 
-                        <form onSubmit={handleSubmit} className="space-y-4">
+                        <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+                            {status === 'success' && (
+                                <div className="p-3 rounded-md bg-green-50 border border-green-200 text-green-800">
+                                    <strong>Message sent.</strong> Thank you — Tushar Nikumbh will get back to you shortly.
+                                </div>
+                            )}
+
+                            {status === 'error' && (
+                                <div className="p-3 rounded-md bg-red-50 border border-red-200 text-red-800">
+                                    <strong>Message not sent.</strong> Something went wrong — please try again later.
+                                </div>
+                            )}
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="space-y-1.5">
                                     <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Full Name</label>
@@ -58,6 +109,7 @@ const Contact = () => {
                                         value={formData.name}
                                         onChange={handleChange}
                                     />
+                                    {errors.name && <p className="text-xs text-red-600 mt-1">{errors.name}</p>}
                                 </div>
                                 <div className="space-y-1.5">
                                     <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Email Address</label>
@@ -70,6 +122,7 @@ const Contact = () => {
                                         value={formData.email}
                                         onChange={handleChange}
                                     />
+                                    {errors.email && <p className="text-xs text-red-600 mt-1">{errors.email}</p>}
                                 </div>
                             </div>
 
@@ -83,6 +136,7 @@ const Contact = () => {
                                     value={formData.subject}
                                     onChange={handleChange}
                                 />
+                                {errors.subject && <p className="text-xs text-red-600 mt-1">{errors.subject}</p>}
                             </div>
 
                             <div className="space-y-1.5">
@@ -95,14 +149,16 @@ const Contact = () => {
                                     value={formData.message}
                                     onChange={handleChange}
                                 />
+                                {errors.message && <p className="text-xs text-red-600 mt-1">{errors.message}</p>}
                             </div>
 
                             <div className="pt-4 flex flex-col gap-3">
                                 <Button
                                     type="submit"
-                                    className="w-full bg-slate-900 text-white hover:bg-slate-800 py-2 h-10 text-sm font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-200 hover:scale-105"
+                                    className="w-full bg-slate-900 text-white hover:bg-slate-800 py-2 h-10 text-sm font-medium rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"
+                                    disabled={status === 'sending'}
                                 >
-                                    Send Message
+                                    {status === 'sending' ? 'Sending…' : 'Send Message'}
                                 </Button>
 
                                 <div className="flex items-center justify-between gap-2 my-1">
@@ -113,10 +169,10 @@ const Contact = () => {
 
                                 <Button
                                     type="button"
-                                    className="w-full bg-[#25D366] text-white hover:bg-[#20ba60] py-2 h-10 text-sm font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-200 hover:scale-105 flex items-center justify-center gap-2 group"
+                                    className="w-full bg-[#25D366] text-white hover:bg-[#20ba60] py-2 h-10 text-sm font-medium rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 flex items-center justify-center gap-2"
                                     onClick={() => window.open('https://wa.me/917030485048', '_blank')}
                                 >
-                                    <MessageCircle className="w-4 h-4 transition-transform duration-200 group-hover:scale-110" /> WhatsApp
+                                    <MessageCircle className="w-4 h-4" /> WhatsApp
                                 </Button>
                             </div>
                         </form>
@@ -128,13 +184,13 @@ const Contact = () => {
                 <div className="flex justify-center gap-12 mt-12 text-center">
                     <div
                         className="flex flex-col items-center group cursor-pointer"
-                        onClick={() => window.location.href = 'mailto:tusharnikumbh@example.com'}
+                        onClick={() => window.location.href = 'mailto:tusharnikumbh1991@gmail.com'}
                     >
                         <div className="w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center mb-3 shadow-sm group-hover:shadow-md transition-shadow duration-200">
                             <Mail className="h-5 w-5" />
                         </div>
                         <p className="text-slate-800 text-sm font-medium group-hover:text-slate-900 transition-colors">Email</p>
-                        <p className="text-slate-500 text-xs mt-1 group-hover:text-slate-600 transition-colors">tusharnikumbh@gmail.com</p>
+                        <p className="text-slate-500 text-xs mt-1 group-hover:text-slate-600 transition-colors">tusharnikumbh1991@gmail.com</p>
                     </div>
                     <div
                         className="flex flex-col items-center group cursor-pointer"
