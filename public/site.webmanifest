@@ -9,34 +9,11 @@
   "theme_color": "#ffffff",
   "background_color": "#ffffff",
   "categories": ["business", "professional services"],
-  "screenshots": [
-    {
-      "src": "/profilepic/download.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
-    }
-  ],
   "icons": [
     {
       "src": "/favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml"
-    }
-  ],
-  "keywords": [
-    "Biostatistician",
-    "Clinical Trials",
-    "CDISC",
-    "SAP",
-    "Statistical Analysis",
-    "Oncology",
-    "Immunology"
-  ],
-  "contacts": [
-    {
-      "name": "Contact Support",
-      "email": "contact@tusharnikumbh.com"
     }
   ]
 }

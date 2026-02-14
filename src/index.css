@@ -12,7 +12,6 @@
     background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #ffffff 100%);
     position: relative;
     overflow-x: hidden;
-    -webkit-overflow-scrolling: auto;
   }
 
   /* Removed body::before and body::after pseudo-elements for performance */
