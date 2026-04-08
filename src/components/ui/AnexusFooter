@@ -26,4 +26,4 @@ const GravitonFooter = () => {
     );
 };
 
-export default GravitonFooter;
+export default AnexusFooter;
