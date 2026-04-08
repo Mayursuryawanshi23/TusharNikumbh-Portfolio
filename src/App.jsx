@@ -8,7 +8,7 @@ const TherapeuticAreas = lazy(() => import("@/components/TherapeuticAreas"));
 import ToolsTechnologies from "@/components/ToolsTechnologies";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import GravitonFooter from "@/components/GravitonFooter";
+import AnexusFooter from "@/components/AnexusFooter";
 
 function App() {
   return (
@@ -28,7 +28,7 @@ function App() {
         <Contact />
       </main>
       <Footer />
-      <GravitonFooter />
+      <AnexusFooter />
     </div>
   );
 }
